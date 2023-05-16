@@ -89,6 +89,7 @@ footer {
   align-items: center;
   margin-top: auto;
   font-weight: 500;
+  margin-top: 2rem;
 }
 
 .link-button {
@@ -739,4 +740,10 @@ img.graph {
 .host-reviews .review-star {
   color: #ff8c38;
   margin-right: 5px;
+}
+
+.active {
+  font-weight: bold;
+  text-decoration: underline;
+  color: #161616;
 }
