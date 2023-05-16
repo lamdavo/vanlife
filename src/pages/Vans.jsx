@@ -1,4 +1,5 @@
 import { useFetchVans } from "../fetchVans";
+import { Link } from "react-router-dom";
 
 const Vans = () => {
   const { loading, vans } = useFetchVans();
@@ -6,18 +7,20 @@ const Vans = () => {
   if (loading) return <div>Loading...</div>;
 
   const vanElements = vans.map((van) => {
-    const { id, title, description, price, tier, img } = van;
+    const { id, title, price, tier, img } = van;
     return (
       <div key={id} className="van-tile">
-        <img src={img} alt="van image" />
-        <div className="van-info">
-          <h3>{title}</h3>
-          <p>
-            ${price}
-            <span>/day</span>
-          </p>
-        </div>
-        <i className={`van-type ${tier} selected`}>{tier}</i>
+        <Link to={`/vans/${van.id}`}>
+          <img src={img} alt="van image" />
+          <div className="van-info">
+            <h3>{title}</h3>
+            <p>
+              ${price}
+              <span>/day</span>
+            </p>
+          </div>
+          <i className={`van-type ${tier} selected`}>{tier}</i>
+        </Link>
       </div>
     );
   });
