@@ -6,12 +6,17 @@ const VansDetails = () => {
   const { vans } = useFetchVans();
   const params = useParams();
 
-  //TODO: FIX THIS : Pick up here
   const singleVan = vans.map((van) => {
-    const { id, title, price, tier, img } = van;
+    const { id, title, price, tier, img, description } = van;
     return (
       <div key={id} className="van-detail">
         <img src={img} alt="van image" />
+        <h2>{title}</h2>
+        <p className="van-price">
+          <span>${price}</span>/day
+        </p>
+        <p>{description}</p>
+        <button className="link-button">Rent this van</button>
       </div>
     );
   });
