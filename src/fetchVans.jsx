@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { createClient } from "contentful";
-import { set } from "lodash";
 
 const client = createClient({
   space: "f07m1ylfxd13",
