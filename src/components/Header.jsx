@@ -8,17 +8,17 @@ const Header = () => {
       </Link>
       <nav>
         <NavLink
-          to="/vans"
-          className={({ isActive }) => (isActive ? "active" : null)}
-        >
-          Vans
-        </NavLink>
-        <NavLink
           to="/about
         "
           className={({ isActive }) => (isActive ? "active" : null)}
         >
           About
+        </NavLink>
+        <NavLink
+          to="/vans"
+          className={({ isActive }) => (isActive ? "active" : null)}
+        >
+          Vans
         </NavLink>
         <NavLink
           to="/host"
@@ -31,3 +31,4 @@ const Header = () => {
   );
 };
 export default Header;
+ 

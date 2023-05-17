@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./server.js";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Vans from "./pages/Vans/Vans";
@@ -22,7 +23,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="vans" element={<Vans />} />
-          <Route path="/vans:id" element={<VansDetails />} />
+          <Route path="/vans/:id" element={<VansDetails />} />
 
           <Route path="host" element={<HostLayout />}>
             <Route index element={<Dashboard />} />

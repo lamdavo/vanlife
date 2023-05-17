@@ -1,29 +1,30 @@
-import { useFetchVans } from "../../fetchVans";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Vans = () => {
-  const { loading, vans } = useFetchVans();
+  const [vans, setVans] = useState([]);
 
-  if (loading) return <div>Loading...</div>;
+  useEffect(() => {
+    fetch("/api/vans")
+      .then((res) => res.json())
+      .then((data) => setVans(data.vans));
+  }, []);
 
-  const vanElements = vans.map((van) => {
-    const { id, title, price, tier, img } = van;
-    return (
-      <div key={id} className="van-tile">
-        <Link to={`/vans/${van.id}`}>
-          <img src={img} alt="van image" />
-          <div className="van-info">
-            <h3>{title}</h3>
-            <p>
-              ${price}
-              <span>/day</span>
-            </p>
-          </div>
-          <i className={`van-type ${tier} selected`}>{tier}</i>
-        </Link>
-      </div>
-    );
-  });
+  const vanElements = vans.map((van) => (
+    <div key={van.id} className="van-tile">
+      <Link to={`/vans/${van.id}`}>
+        <img src={van.imageUrl} />
+        <div className="van-info">
+          <h3>{van.name}</h3>
+          <p>
+            ${van.price}
+            <span>/day</span>
+          </p>
+        </div>
+        <i className={`van-type ${van.type} selected`}>{van.type}</i>
+      </Link>
+    </div>
+  ));
 
   return (
     <div className="van-list-container">
