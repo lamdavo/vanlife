@@ -12,6 +12,7 @@ import "./server.js";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Vans, { loader as vansLoader } from "./pages/Vans/Vans";
+import Login from "./pages/Login";
 import VansDetails from "./pages/Vans/VansDetails";
 import Layout from "./components/Layout";
 import Dashboard from "./pages/Host/Dashboard";
@@ -37,17 +38,18 @@ const router = createBrowserRouter(
         loader={vansLoader}
         errorElement={<Error />}
       />
+      <Route path="/login" element={<Login />} />
       <Route path="/vans/:id" element={<VansDetails />} />
 
       <Route path="host" element={<HostLayout />}>
-        <Route index element={<Dashboard />} />
-        <Route path="income" element={<Income />} />
-        <Route path="reviews" element={<Reviews />} />
-        <Route path="vans" element={<HostVans />} />
-        <Route path="vans/:id" element={<HostVanDetails />}>
-          <Route index element={<HostVanInfo />} />
-          <Route path="pricing" element={<HostVanPricing />} />
-          <Route path="photos" element={<HostVanPhotos />} />
+        <Route index element={<Dashboard />} loader={async ()=> {return null}}/>
+        <Route path="income" element={<Income />} loader={async ()=> {return null}}/>
+        <Route path="reviews" element={<Reviews />} loader={async ()=> {return null}}/>
+        <Route path="vans" element={<HostVans />} loader={async ()=> {return null}}/>
+        <Route path="vans/:id" element={<HostVanDetails loader={async ()=> {return null}}/>}>
+          <Route index element={<HostVanInfo />} loader={async ()=> {return null}}/>
+          <Route path="pricing" element={<HostVanPricing />} loader={async ()=> {return null}}/>
+          <Route path="photos" element={<HostVanPhotos />} loader={async ()=> {return null}}/>
         </Route>
       </Route>
       <Route path="*" element={<NotFound />} />
