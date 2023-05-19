@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { getHostVans } from "../../api";
 import { useLoaderData } from "react-router-dom";
+import { requireAuth } from "../../utils";
 
-export function loader() {
+export async function loader() {
+  await requireAuth();
   return getHostVans();
 }
 
@@ -14,7 +16,7 @@ const HostVans = () => {
   };
 
   const hostVanElements = vans.map((van) => (
-    <Link to={van.id} key={van.id}>
+    <Link to={van.id} key={van.id} className="host-van-link-wrapper">
       <div className="host-van-single">
         <img src={van.imageUrl} style={imageStyle} />
         <div className="host-van-info">
