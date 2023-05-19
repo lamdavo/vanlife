@@ -1,4 +1,4 @@
-import { useLoaderData, Form } from "react-router-dom";
+import { useLoaderData, Form, redirect } from "react-router-dom";
 import { loginUser } from "../api";
 
 export function loader({ request }) {
@@ -6,12 +6,12 @@ export function loader({ request }) {
 }
 
 export async function action({ request }) {
-  console.log("action");
   const formData = await request.formData();
   const email = formData.get("email");
   const password = formData.get("password");
-  console.log(email, password);
-  return null;
+  const data = await loginUser({ email, password });
+  localStorage.setItem("loggedin", true);
+  return redirect("/host");
 }
 
 const Login = () => {
@@ -21,7 +21,7 @@ const Login = () => {
     <div className="login-container">
       <h1>Sign in to your account</h1>
       {message && <h3 className="red">{message}</h3>}
-      <Form method="post" className="login-form">
+      <Form method="post" replace className="login-form">
         <input name="email" type="email" placeholder="Email address" />
         <input name="password" type="password" placeholder="Password" />
         <button type="submit">Log in</button>
