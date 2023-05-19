@@ -1,14 +1,13 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { getHostVans } from "../../api";
+import { useLoaderData } from "react-router-dom";
+
+export function loader() {
+  return getHostVans();
+}
 
 const HostVans = () => {
-  const [vans, setVans] = useState([]);
-
-  useEffect(() => {
-    fetch("/api/host/vans")
-      .then((res) => res.json())
-      .then((data) => setVans(data.vans));
-  }, []);
+  const vans = useLoaderData();
 
   const imageStyle = {
     width: "100px",
