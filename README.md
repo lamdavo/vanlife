@@ -1,6 +1,6 @@
-# Van Life Mobile
+# Van Life is a design challenge
 
-## VanLife Mobile is an app that allows users to Rent vans
+## Mobile only layout.  Users can rent camper vans
 
 Vite + Miragejs.com for the mock backend
 
